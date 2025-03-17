@@ -7,12 +7,12 @@ Author: jBleyer
 <br>
 <br>
 
-_dramatic pause_
+/* _dramatic pause_ *
 
 <br>
 <br>
 
-_curtains open_
+/* _curtains open_ *
 
 <br>
 <br>
