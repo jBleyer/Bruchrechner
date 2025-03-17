@@ -23,33 +23,32 @@ public class bruchrechner {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                //get operant 
-               char operant = String.valueOf(comboBoxOperants.getSelectedItem()).charAt(0);
+                //get operant from ComboBox and use it to determine the appropriate mathematical operation
+                char operant = String.valueOf(comboBoxOperants.getSelectedItem()).charAt(0);
 
+                //GET ME THE INPUT
+                //Bruch 1
                 int z1 = Integer.parseInt(zaehler1.getText());
                 int n1 = Integer.parseInt(nenner1.getText());
-
+                //Bruch 2
                 int z2 = Integer.parseInt(zaehler2.getText());
                 int n2 = Integer.parseInt(nenner2.getText());
 
+                //determine the appropriate mathematical operation
                switch (operant){
                    case '+':
 
-                       z1 = Integer.parseInt(zaehler1.getText());
-                       n1 = Integer.parseInt(nenner1.getText());
-
-                       z2 = Integer.parseInt(zaehler2.getText());
-                       n2 = Integer.parseInt(nenner2.getText());
-
+                       //If addition: get the gemeinsamen Nenner
                        int gemeinsamerNenner;
 
                        //Wenn nenner gleich sind
                        if(n1 == n2){
                            gemeinsamerNenner = n1;
-                       } else { //und wenn nicht:
+                       } else {
+                           //und wenn nicht:
                            gemeinsamerNenner = n1 * n2;
 
-                           //Zähler1 ausrechnen
+                           //Zähler 1 ausrechnen
                            int multiplikatorZ1 = (gemeinsamerNenner/n1);
 
                            z1 = z1 * multiplikatorZ1;
@@ -60,59 +59,76 @@ public class bruchrechner {
                            z2 = z2 * multiplikatorZ2;
                        }
 
-                       System.out.println(z1);
-
+                       //gemeinsamer Nenner
                        int gemeinsamerZaehler = z1 + z2;
 
-                       System.out.println("gemeinsamerNenner " + gemeinsamerNenner + " gemeinsamerZaehler " + gemeinsamerZaehler );
-
+                       //Put Zähler to outputLabel
                        outputZaehler.setText(String.valueOf(gemeinsamerZaehler));
+                       //Put Nenenr to outputLabel
                        outputNenner.setText(String.valueOf(gemeinsamerNenner));
 
                        break;
 
                    case '-':
-                       //TODO: Hier noch minus! es addiert!
-                       gemeinsamerNenner = n1 * n2;
 
-                       //Zähler1 ausrechnen
-                       int multiplikatorZ1 = (gemeinsamerNenner/n1);
+                       //Now do the same thing but with subtraction
 
-                       z1 = z1 * multiplikatorZ1;
+                       //Wenn nenner gleich sind
+                       if(n1 == n2){
+                           gemeinsamerNenner = n1;
+                       } else {
+                           //und wenn nicht:
+                           gemeinsamerNenner = n1 * n2;
 
-                       //Zähler2 ausrechnen
-                       int multiplikatorZ2 = (gemeinsamerNenner/n2);
+                           //Zähler 1
+                           int multiplikatorZ1 = (gemeinsamerNenner/n1);
 
-                       z2 = z2 * multiplikatorZ2;
+                           z1 = z1 * multiplikatorZ1;
 
-                       System.out.println(z1);
-                       int gemeinsamerZaehler2 = z1 + z2;
-                       System.out.println("gemeinsamerNenner " + gemeinsamerNenner + " gemeinsamerZaehler " + gemeinsamerZaehler2 );
+                           //Zähler 2
+                           int multiplikatorZ2 = (gemeinsamerNenner/n2);
 
+                           z2 = z2 * multiplikatorZ2;
+                       }
+
+                       //gemeinsamer Nenner
+                       int gemeinsamerZaehler2 = z1 - z2;
+
+                       //Put Zähler to outputLabel
                        outputZaehler.setText(String.valueOf(gemeinsamerZaehler2));
+                       //Put Nenner to outputLabel
                        outputNenner.setText(String.valueOf(gemeinsamerNenner));
 
                        break;
+
                    case 'x':
+
+                       //calculate gemeinsamer Zähler
                        gemeinsamerZaehler = z1 * z2;
                        String gemeinsamerZaehlerString = String.valueOf(gemeinsamerZaehler);
+
+                       //And the Nenner
                        gemeinsamerNenner = n1 * n2;
                        String gemeinsamerNennerString = String.valueOf(gemeinsamerNenner);
-                       System.out.println("gemeinsamerNenner " + gemeinsamerNenner + " gemeinsamerZaehler " + gemeinsamerZaehler);
 
+                        //Put them both in Label
                        outputZaehler.setText(gemeinsamerZaehlerString);
                        outputNenner.setText(gemeinsamerNennerString);
 
                        break;
+
                    case '/':
+
+                       //Same thing here, but we now do a switcheroo with the second one
                        gemeinsamerZaehler = z1 * n2;
                        String gemeinsamerZaehlerString2 = String.valueOf(gemeinsamerZaehler);
                        gemeinsamerNenner = n1 * z2;
                        String gemeinsamerNennerString2 = String.valueOf(gemeinsamerNenner);
-                       System.out.println("gemeinsamerNenner " + gemeinsamerNenner + " gemeinsamerZaehler " + gemeinsamerZaehler);
 
+                       //And ofc put them both in Label
                        outputZaehler.setText(gemeinsamerZaehlerString2);
                        outputNenner.setText(gemeinsamerNennerString2);
+
                        break;
                }
             }
@@ -141,6 +157,11 @@ public class bruchrechner {
                 outputNenner.setText("");
                 outputZaehler.setText("");
                 outputGemischteZahl.setText("");
+
+                zaehler1.setText("");
+                zaehler2.setText("");
+                nenner1.setText("");
+                nenner2.setText("");
             }
         });
 
