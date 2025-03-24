@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -202,5 +203,6 @@ public class bruchrechner {
         frame.pack();
         frame.setVisible(true);
         frame.setSize(500, 300);
+        frame.setForeground(new Color(238, 130, 238));
     }
 }
